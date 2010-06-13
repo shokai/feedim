@@ -32,8 +32,10 @@ config["feeds"].each{|url|
   end
   next if !feed
   feed.entries.each{|i|
+    next if !i.description or i.description.size < 1
     filterd = false
     config["filters"].each{|f|
+      
       if i.description.toutf8 =~ /#{f}/
         filterd = true
         break
