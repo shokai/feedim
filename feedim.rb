@@ -41,9 +41,9 @@ config["feeds"].each{|url|
     }
     if !filterd
       next if pages[i.url] != nil
-      pages[i.url] = i.description.toutf8
       puts mes = "#{i.url}\n#{i.description.toutf8}"
-      ImKayac.send(config["im"], mes) if !config["debug"]
+      res = ImKayac.send(config["im"], mes) if !config["debug"]
+      pages[i.url] = i.description.toutf8 if res
     end
     sleep 10
   }

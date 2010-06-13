@@ -8,7 +8,9 @@ module ImKayac
     Net::HTTP.start(uri.host, uri.port) {|http|
       response = http.post(uri.path, "message=#{URI.encode(message)}")
       puts response.body
+      return true
     }
+    return false
   end
 
 end
