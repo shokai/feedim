@@ -13,7 +13,7 @@ require 'pp'
 require 'cgi'
 
 begin
-  config = YAML::load open('config.yaml')
+  config = YAML::load open(File.dirname(__FILE__) + '/config.yaml')
 rescue
   puts 'config.yaml load error!'
   exit 1
