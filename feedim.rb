@@ -10,10 +10,9 @@ require 'open-uri'
 require 'yaml'
 require 'kconv'
 require 'pp'
-require 'cgi'
 
 begin
-  config = YAML::load open(File.dirname(__FILE__) + '/config.yaml')
+  config = YAML::load open(File.dirname(__FILE__)+'/config.yaml')
 rescue
   puts 'config.yaml load error!'
   exit 1
@@ -35,8 +34,7 @@ config["feeds"].each{|url|
     next if !i.description or i.description.size < 1
     filterd = false
     config["filters"].each{|f|
-      
-      if i.description.toutf8 =~ /#{f}/
+      if i.description.toutf8 =~ /#{f}/i
         filterd = true
         break
       end
