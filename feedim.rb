@@ -2,14 +2,15 @@
 $:.unshift(File.dirname(__FILE__)+'/lib') unless
   $:.include?(File.dirname(__FILE__)+'/lib') || $:.include?(File.expand_path(File.dirname(__FILE__)+'/lib'))
 require 'im-kayac'
+require 'pp'
+require 'yaml'
 require 'rubygems'
 require 'tokyocabinet'
 include TokyoCabinet
 require 'feed-normalizer'
 require 'open-uri'
-require 'yaml'
 require 'kconv'
-require 'pp'
+
 
 begin
   config = YAML::load open(File.dirname(__FILE__)+'/config.yaml')
