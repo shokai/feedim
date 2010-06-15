@@ -1,4 +1,5 @@
 *.log
+.bundle
 *~
 .DS_Store
 db/*
