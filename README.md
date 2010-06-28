@@ -36,6 +36,20 @@ Config
 
 then edit it.
 
+    im : "test" # im-kayac user name
+
+    feeds : # list of feeds
+    - "http://search.twitter.com/search.atom?q=shokai"
+    - "http://pcod.no-ip.org/yats/search?query=shokai&lang=ja&rss"
+
+    filters :  # filter by regex
+    - "_shokai"
+    - "shokai_"
+    - "\-shokai"
+    - "shokai\-"
+    - "shokai\.co"
+    - "shokai\d"
+    - "\dshokai"
 
 Run
 ===
