@@ -31,7 +31,7 @@ config["feeds"].each{|url|
     puts 'feed parse error!'
   end
   next if !feed
-  feed.entries.each{|i|
+  feed.entries.reverse.each{|i|
     next if !i.description or i.description.size < 1
     filterd = false
     config["filters"].each{|f|
