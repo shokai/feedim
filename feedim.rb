@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
-$:.unshift(File.dirname(__FILE__)+'/lib') unless
-  $:.include?(File.dirname(__FILE__)+'/lib') || $:.include?(File.expand_path(File.dirname(__FILE__)+'/lib'))
-require 'im-kayac'
+# -*- coding: undecided -*-
+require File.dirname(__FILE__)+'/lib/im-kayac'
 require 'pp'
 require 'yaml'
 require 'rubygems'
@@ -15,7 +14,7 @@ require 'kconv'
 begin
   config = YAML::load open(File.dirname(__FILE__)+'/config.yaml')
 rescue
-  puts 'config.yaml load error!'
+  STDERR.puts 'config.yaml load error!'
   exit 1
 end
 
@@ -23,30 +22,49 @@ pages = HDB.new
 pages.open(File.dirname(__FILE__)+"/pages.tch", HDB::OWRITER|HDB::OCREAT)
 
 config["feeds"].each{|url|
-  puts url
+  puts "[feed] : #{url} --"
   feed = nil
   begin
     feed = FeedNormalizer::FeedNormalizer.parse open(url, 'User-Agent' => 'feedim')
   rescue
-    puts 'feed parse error!'
+    STDERR.puts 'feed parse error!'
+    next
   end
-  next if !feed
   feed.entries.reverse.each{|i|
     next if !i.description or i.description.size < 1
-    filterd = false
-    config["filters"].each{|f|
-      if i.description.toutf8 =~ /#{f}/i
-        filterd = true
-        break
-      end
-    }
-    if !filterd
+    i.description.gsub!(/<[^<>]+>/,'') # htmlタグ除去
+    filtered = false
+    if !filtered and config["filters"]
+      config["filters"].each{|f|
+        if i.description.toutf8 =~ /#{f}/i or i.url =~ /#{f}/i
+          filtered = true
+          break
+        end
+      }
+    end
+    if !filtered and config["description_filters"]
+      config["description_filters"].each{|f|
+        if i.description.toutf8 =~ /#{f}/i
+          filtered = true
+          break
+        end
+      }
+    end
+    if !filtered and config["url_filters"]
+      config["url_filters"].each{|f|
+        if i.url =~ /#{f}/i
+          filtered = true
+          break
+        end
+      }
+    end
+    unless filtered
       next if pages[i.url] != nil
       puts mes = "#{i.url}\n#{i.description.toutf8}"
-      res = ImKayac.send(config["im"], mes) if !config["debug"]
+      res = ImKayac.send(config["im"], mes) unless config["debug"]
       pages[i.url] = i.description.toutf8 if res
+      sleep 3
     end
-    sleep 10
   }
   
 }

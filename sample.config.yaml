@@ -1,17 +1,27 @@
 im : "test" # im-kayac user name
 
-feeds :  # list of feeds
+# list of feeds
+feeds :
 - "http://search.twitter.com/search.atom?q=shokai"
 - "http://pcod.no-ip.org/yats/search?query=shokai&lang=ja&rss"
 
-filters :  # filter by regex
+# filter by regex
+# filter "url" and "description" property of entries
+filters : 
 - "_shokai"
 - "shokai_"
+
+# filter "description" property of entries
+description_filters:
 - "\-shokai"
 - "shokai\-"
 - "shokai\.co"
 - "shokai\d"
 - "\dshokai"
+
+# filter "url" property of entries
+url_filters :
+- "twitter\.com\/shokai"
 
 
 #debug : "true"
