@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# -*- coding: undecided -*-
+# -*- coding: utf-8 -*-
 require File.dirname(__FILE__)+'/lib/im-kayac'
 require 'pp'
 require 'yaml'
@@ -22,7 +22,7 @@ pages = HDB.new
 pages.open(File.dirname(__FILE__)+"/pages.tch", HDB::OWRITER|HDB::OCREAT)
 
 config["feeds"].each{|url|
-  puts "[feed] : #{url} --"
+  puts "[feed] : #{url}"
   feed = nil
   begin
     feed = FeedNormalizer::FeedNormalizer.parse open(url, 'User-Agent' => 'feedim')
