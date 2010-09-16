@@ -1,16 +1,16 @@
 require 'rubygems'
 require 'uri'
+require 'net/http'
 
 module ImKayac
   def ImKayac.send(user, message)
-    puts uri = URI.parse("http://im.kayac.com/api/post/#{user}")
+    uri = URI.parse("http://im.kayac.com/api/post/#{user}")
     message.gsub!(/&/, '_')
     Net::HTTP.start(uri.host, uri.port) {|http|
       response = http.post(uri.path, "message=#{URI.encode(message)}")
-      puts response.body
-      return true
+      return response.body
     }
-    return false
+    raise Error.new('ImKayac error')
   end
 
 end

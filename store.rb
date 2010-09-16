@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 # -*- coding: utf-8 -*-
 require File.dirname(__FILE__)+'/helper'
-require File.dirname(__FILE__)+'/lib/im-kayac'
 require 'rubygems'
 require 'feed-normalizer'
 require 'open-uri'
