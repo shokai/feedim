@@ -6,6 +6,8 @@ mongo_db : 'feedim'
 # im-kayac user name
 im : "test"
 
+user_agent : "feedim"
+
 # list of feeds
 feeds :
 - "http://search.twitter.com/search.atom?q=shokai"
@@ -29,5 +31,3 @@ description_filters:
 url_filters :
 - "twitter\.com\/shokai"
 
-
-#debug : "true"
