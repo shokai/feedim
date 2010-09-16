@@ -7,9 +7,8 @@ feeds to IM. (using im.kayac.com)
 Dependencies
 ============
 
-* TokyoCabinet
-* Twitter
-
+* MongoDB 1.6
+* mongoid 2.0
 
 Setup
 =====
@@ -22,9 +21,6 @@ git clone
 Install Dependencies
 --------------------
 
-    # Mac OS X
-    % sudo port install tokyocabinet
-  
     # Install gems
     % bundle install
 
@@ -54,9 +50,5 @@ then edit it.
 Run
 ===
 
-    % ruby feedim.rb
-
-Author
-======
-
-* shokai
+    % ruby store.rb
+    % ruby publish.rb
