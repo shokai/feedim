@@ -8,3 +8,4 @@ db*
 *.tch
 config.yaml
 *#*
+*.lock
