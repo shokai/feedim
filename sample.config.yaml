@@ -1,4 +1,10 @@
-im : "test" # im-kayac user name
+# mongo db config
+mongo_server : 'localhost'
+mongo_port : 27017
+mongo_db : 'feedim'
+
+# im-kayac user name
+im : "test"
 
 # list of feeds
 feeds :
