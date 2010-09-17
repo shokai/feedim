@@ -5,6 +5,7 @@ require 'rubygems'
 require 'feed-normalizer'
 require 'open-uri'
 require 'kconv'
+require 'hugeurl'
 
 @conf["feeds"].each{|url|
   puts "[feed] : #{url}"
@@ -18,6 +19,15 @@ require 'kconv'
   feed.entries.reverse.each{|i|
     next if !i.description or i.description.size < 1
     i.description.gsub!(/<[^<>]+>/,'') # htmlタグ除去
+    i.description = i.description.split(/(https?\:[\w\.\~\-\/\?\&\+\=\:\@\%\;\#\%]+)/).map{|str|
+      res = nil
+      if str =~ /^http\:\/\/bit\.ly\/.+/ or str =~ /^http\:\/\/tinyurl\.com\/.+/
+        res = Hugeurl.get(str).to_s rescue next
+      else
+        res = str
+      end
+      res
+    }.join('')
     next if Page.count(:conditions => {:url => i.url}) > 0
     page = Page.new(
                     :url => i.url,
