@@ -4,6 +4,7 @@ class Page
   field :url
   field :title
   field :description
+  field :source
   field :date_published, :default => nil
   field :created_at, :type => Integer, :default => Time.now.to_i
   field :published_at, :type => Integer

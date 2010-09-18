@@ -7,11 +7,11 @@ require 'open-uri'
 require 'kconv'
 require 'hugeurl'
 
-@conf["feeds"].each{|url|
-  puts "[feed] : #{url}"
+@conf["feeds"].each{|feed_url|
+  puts "[feed] : #{feed_url}"
   feed = nil
   begin
-    feed = FeedNormalizer::FeedNormalizer.parse open(url, 'User-Agent' => @conf['user_agent'])
+    feed = FeedNormalizer::FeedNormalizer.parse open(feed_url, 'User-Agent' => @conf['user_agent'])
   rescue
     STDERR.puts 'feed parse error!'
     next
@@ -33,7 +33,8 @@ require 'hugeurl'
                     :url => i.url,
                     :title => i.title.to_s.toutf8,
                     :description => i.description.to_s.toutf8,
-                    :date_published => i.date_published
+                    :date_published => i.date_published,
+                    :source => feed_url
                     )
     page.save rescue next
     puts "stored : #{page.description} => #{page.url}"
