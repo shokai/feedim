@@ -5,6 +5,8 @@ mongo_db : 'feedim'
 
 # im-kayac user name
 im : "test"
+im_auth_type : "sig" # "sig", "password"  OR  empty (comment out)
+im_auth : "your-password-or-signature"
 
 user_agent : "feedim"
 
