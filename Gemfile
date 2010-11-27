@@ -1,9 +1,9 @@
 source 'http://rubygems.org'
 
 gem 'mongo'
-gem 'bson','1.0.4'
-gem 'bson_ext','1.0.4'
-gem 'mongoid','2.0.0.beta.16'
+gem 'bson'
+gem 'bson_ext'
+gem 'mongoid','2.0.0.beta.20'
 gem 'feed-normalizer'
 gem 'json'
 gem 'hugeurl'

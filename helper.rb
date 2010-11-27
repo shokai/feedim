@@ -1,9 +1,8 @@
 #!/usr/bin/env ruby
 require 'rubygems'
+require 'bundler/setup'
 require 'yaml'
-gem 'bson','1.0.4'
-gem 'bson_ext','1.0.4'
-gem 'mongoid','2.0.0.beta.16'
+gem 'mongoid','2.0.0.beta.20'
 require 'bson'
 require 'mongoid'
 require File.dirname(__FILE__)+'/page'
