@@ -2,7 +2,6 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'yaml'
-gem 'mongoid','2.0.0.beta.20'
 require 'bson'
 require 'mongoid'
 require File.dirname(__FILE__)+'/page'
