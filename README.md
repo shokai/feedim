@@ -7,8 +7,8 @@ feeds to IM. (using im.kayac.com)
 Dependencies
 ============
 
-* MongoDB 1.6
-* mongoid 2.0
+* MongoDB 2.0+
+* Ruby 1.8.7
 
 Setup
 =====
@@ -21,7 +21,7 @@ git clone
 Install Dependencies
 --------------------
 
-    # Install gems
+    % gem install bundler
     % bundle install
 
 
