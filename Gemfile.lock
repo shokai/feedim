@@ -1,0 +1,46 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    activemodel (3.2.8)
+      activesupport (= 3.2.8)
+      builder (~> 3.0.0)
+    activesupport (3.2.8)
+      i18n (~> 0.6)
+      multi_json (~> 1.0)
+    backports (2.6.4)
+    bson (1.7.0)
+    bson_ext (1.7.0)
+      bson (~> 1.7.0)
+    builder (3.0.2)
+    feed-normalizer (1.5.2)
+      hpricot (>= 0.6)
+      simple-rss (>= 1.1)
+    hpricot (0.8.6)
+    hugeurl (0.0.6)
+    i18n (0.6.1)
+    im-kayac (0.0.5)
+      json
+    json (1.7.5)
+    mongo (1.7.0)
+      bson (~> 1.7.0)
+    mongoid (2.5.0)
+      activemodel (~> 3.1)
+      mongo (~> 1.7)
+      tzinfo (~> 0.3.22)
+    multi_json (1.3.6)
+    simple-rss (1.2.3)
+    tzinfo (0.3.33)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  backports
+  bson
+  bson_ext
+  feed-normalizer
+  hugeurl
+  im-kayac
+  json
+  mongo
+  mongoid (< 3.0)

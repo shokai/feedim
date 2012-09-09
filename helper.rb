@@ -1,12 +1,9 @@
 #!/usr/bin/env ruby
 require 'rubygems'
 require 'bundler/setup'
+Bundler.require
 require 'yaml'
-require 'bson'
-gem 'mongoid','>=2.0.0'
-require 'mongoid'
 require File.dirname(__FILE__)+'/page'
-$KCODE = 'u'
 
 begin
   @conf = YAML::load open(File.dirname(__FILE__)+'/config.yaml')
