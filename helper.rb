@@ -3,7 +3,7 @@ require 'rubygems'
 require 'bundler/setup'
 Bundler.require
 require 'yaml'
-require File.dirname(__FILE__)+'/page'
+require File.expand_path 'models/page', File.dirname(__FILE__)
 
 begin
   @conf = YAML::load open(File.dirname(__FILE__)+'/config.yaml')

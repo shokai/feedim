@@ -1,4 +1,6 @@
 require 'rubygems'
+require 'kconv'
+
 class Page
   include Mongoid::Document
   field :url
@@ -10,27 +12,27 @@ class Page
   field :published_at, :type => Integer
   field :status, :default => 'stored'
 
-  def filtered?(conf)
-    if conf["filters"]
-      conf["filters"].each{|f|
+  def filtered?
+    if Conf['filters']
+      Conf["filters"].each do |f|
         if description.toutf8 =~ /#{f}/i or url =~ /#{f}/i
           return true
         end
-      }
+      end
     end
-    if conf["description_filters"]
-      conf["description_filters"].each{|f|
+    if Conf["description_filters"]
+      Conf["description_filters"].each do |f|
         if description.toutf8 =~ /#{f}/i
           return true
         end
-      }
+      end
     end
-    if conf["url_filters"]
-      conf["url_filters"].each{|f|
+    if Conf["url_filters"]
+      Conf["url_filters"].each do |f|
         if url =~ /#{f}/i
           return true
         end
-      }
+      end
     end
     return false
   end

@@ -6,5 +6,5 @@ db/*
 db*
 .fuse*
 *.tch
-config.yaml
+config.yml
 *#*

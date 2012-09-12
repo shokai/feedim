@@ -1,24 +1,21 @@
 #!/usr/bin/env ruby
-# -*- coding: utf-8 -*-
-require File.dirname(__FILE__)+'/helper'
-require 'rubygems'
-require 'feed-normalizer'
+require File.expand_path 'bootstrap', File.dirname(__FILE__)
+Bootstrap.init
 require 'open-uri'
 require 'kconv'
-require 'hugeurl'
 
-@conf["feeds"].each{|feed_url|
+Conf["feeds"].each{|feed_url|
   puts "[feed] : #{feed_url}"
   feed = nil
   begin
-    feed = FeedNormalizer::FeedNormalizer.parse open(feed_url, 'User-Agent' => @conf['user_agent'])
+    feed = FeedNormalizer::FeedNormalizer.parse open(feed_url, 'User-Agent' => Conf['user_agent'])
   rescue
     STDERR.puts 'feed parse error!'
     next
   end
   feed.entries.reverse.each{|i|
     next if !i.description or i.description.size < 1
-    i.description.gsub!(/<[^<>]+>/,'') # htmlタグ除去
+    i.description.gsub!(/<[^<>]+>/,'') # remove html tag
     i.description = i.description.split(/(https?\:[\w\.\~\-\/\?\&\+\=\:\@\%\;\#\%]+)/).map{|str|
       res = nil
       if str =~ /^http\:\/\/bit\.ly\/.+/ or str =~ /^http\:\/\/tinyurl\.com\/.+/
