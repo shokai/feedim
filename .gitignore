@@ -2,9 +2,5 @@
 .bundle
 *~
 .DS_Store
-db/*
-db*
-.fuse*
-*.tch
 config.yml
 *#*
