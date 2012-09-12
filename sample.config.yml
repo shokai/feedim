@@ -1,35 +1,37 @@
 # mongo db config
-mongo_server : 'localhost'
-mongo_port : 27017
-mongo_db : 'feedim'
+mongo :
+  host : 'localhost'
+  port : 27017
+  database : 'feedim'
 
 # im-kayac user name
-im : "test"
-im_auth_type : "sig" # "sig", "password"  OR  empty (comment out)
-im_auth : "your-password-or-signature"
+im :
+  to : "test"
+  auth_type : "sig" # "sig", "password"  OR  empty (comment out)
+  auth : "your-password-or-signature"
 
 user_agent : "feedim"
 
 # list of feeds
 feeds :
-- "http://search.twitter.com/search.atom?q=shokai"
-- "http://pcod.no-ip.org/yats/search?query=shokai&lang=ja&rss"
+  - "http://search.twitter.com/search.atom?q=shokai"
+  - "http://pcod.no-ip.org/yats/search?query=shokai&lang=ja&rss"
 
 # filter by regex
 # filter "url" and "description" property of entries
 filters : 
-- "_shokai"
-- "shokai_"
+  - "_shokai"
+  - "shokai_"
 
 # filter "description" property of entries
 description_filters:
-- "\-shokai"
-- "shokai\-"
-- "shokai\.co"
-- "shokai\d"
-- "\dshokai"
+  - "\-shokai"
+  - "shokai\-"
+  - "shokai\.co"
+  - "shokai\d"
+  - "\dshokai"
 
 # filter "url" property of entries
 url_filters :
-- "twitter\.com\/shokai"
-
+  - "twitter\.com\/shokai"
+  - "bot"
