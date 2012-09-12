@@ -1,14 +1,15 @@
 feedim
 ======
-
-feeds to IM. (using im.kayac.com)
+store Feeds -> publish IM (using im.kayac.com).
 
 
 Dependencies
 ============
 
 * MongoDB 2.0+
-* Ruby 1.8.7
+* Ruby 1.8.7+
+* http://im.kayac.com
+
 
 Setup
 =====
@@ -32,20 +33,19 @@ Config
 
 then edit it.
 
-    im : "test" # im-kayac user name
+    im : "shokai" # im-kayac user name
 
     feeds : # list of feeds
     - "http://search.twitter.com/search.atom?q=shokai"
-    - "http://pcod.no-ip.org/yats/search?query=shokai&lang=ja&rss"
+    - "http://shokai.org/blog/feed"
 
     filters :  # filter by regex
     - "_shokai"
     - "shokai_"
-    - "\-shokai"
-    - "shokai\-"
-    - "shokai\.co"
-    - "shokai\d"
-    - "\dshokai"
+    - "-shokai"
+    - "shokai-"
+    - "shokai.co"
+    - "bot"
 
 Run
 ===
