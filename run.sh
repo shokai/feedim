@@ -1,5 +1,5 @@
 #!/bin/sh
 
 cd `dirname $0`
-bundle exec ruby store.rb
-bundle exec ruby publish.rb
+bundle exec ruby bin/store.rb
+bundle exec ruby bin/publish.rb

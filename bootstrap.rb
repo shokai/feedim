@@ -5,7 +5,7 @@ require 'yaml'
 
 class Bootstrap
   def self.default
-    [:inits, :models]
+    [:inits, :models, :helpers]
   end
 
   def self.init(*inits)

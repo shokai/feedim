@@ -50,8 +50,12 @@ then edit it.
 Run
 ===
 
-    % ruby store.rb
-    % ruby publish.rb
+    % ./run.sh
+
+or
+
+    % ruby bin/store.rb
+    % ruby bin/publish.rb
 
 
 LICENSE

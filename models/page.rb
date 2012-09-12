@@ -2,39 +2,39 @@ require 'rubygems'
 require 'kconv'
 
 class Page
+  class Status
+    STORED = 1
+    PUBLISHED = 2
+    FILTERED = 3
+  end
+
   include Mongoid::Document
   field :url
   field :title
   field :description
   field :source
-  field :date_published, :default => nil
-  field :created_at, :type => Integer, :default => Time.now.to_i
-  field :published_at, :type => Integer
-  field :status, :default => 'stored'
+  field :created_at, :type => Time, :default => nil
+  field :stored_at, :type => Time, :default => lambda{Time.now.to_i}
+  field :published_at, :type => Time, :default => nil
+  field :status, :type => Integer, :default => Page::Status::STORED
+
+  validates_uniqueness_of :url
+  validates_format_of :url, :with => /^https?:\/\/.+$/
+
+  def self.find_to_publish
+    self.where(:status => Page::Status::STORED)
+  end
 
   def filtered?
-    if Conf['filters']
-      Conf["filters"].each do |f|
-        if description.toutf8 =~ /#{f}/i or url =~ /#{f}/i
-          return true
-        end
-      end
+    filters_desc = [Conf['filters'], Conf['description_filters']].flatten.uniq.reject{|i| i==nil}
+    filters_url = [Conf['filters'], Conf['url_filters']].flatten.uniq.reject{|i| i==nil}
+    filters_desc.each do |f|
+      return true if description.toutf8 =~ /#{f}/i
     end
-    if Conf["description_filters"]
-      Conf["description_filters"].each do |f|
-        if description.toutf8 =~ /#{f}/i
-          return true
-        end
-      end
-    end
-    if Conf["url_filters"]
-      Conf["url_filters"].each do |f|
-        if url =~ /#{f}/i
-          return true
-        end
-      end
+    filters_url.each do |f|
+      return true if url =~ /#{f}/i
     end
     return false
   end
-end
 
+end
