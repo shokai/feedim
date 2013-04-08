@@ -4,3 +4,4 @@
 .DS_Store
 config.yml
 *#*
+.ruby-version
